@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps-staging
+  namespace: argocd
+  finalizers:
+    - resource-finalizer.argocd.argoproj.io
+spec:
+# Projects provide a logical grouping of applications which is useful when Argo CD is used by multiple teams
+  project: default
+  source: 
+    repoURL: https://github.com/gauravgirase/publicAPP.git
+    targetRevision: HEAD
+    path: enviroments/staging/apps
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: 
+      prune: true
+      selfheal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=false
+      - PrunePropagationPolicy=forground
+      - PruneLast=true
