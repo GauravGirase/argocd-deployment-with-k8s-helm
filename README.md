@@ -6,7 +6,7 @@
  - Kubernetes for application deployment
 
 ## Architecture
-![Logo](./Design/Design.png")
+![Logo](./Design/Design.png)
 
 ## Technologies Used
 
